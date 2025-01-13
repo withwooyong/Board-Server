@@ -16,15 +16,14 @@ public class MySQLConfig {
 
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-        final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource);
+        SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
+        factory.setDataSource(dataSource);
 
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        sessionFactory.setMapperLocations(resolver.getResources("classpath:mappers/*.xml"));
+        factory.setMapperLocations(resolver.getResources("classpath:mappers/*.xml"));
 
-        Resource myBatisConfig = new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml");
-        sessionFactory.setConfigLocation(myBatisConfig);
-
-        return sessionFactory.getObject();
+        Resource resource = new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml");
+        factory.setConfigLocation(resource);
+        return factory.getObject();
     }
 }

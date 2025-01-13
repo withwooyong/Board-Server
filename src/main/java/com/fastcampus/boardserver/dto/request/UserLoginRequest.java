@@ -1,14 +1,20 @@
 package com.fastcampus.boardserver.dto.request;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Setter
-@Getter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserLoginRequest {
-    @NonNull
+
+    @NotBlank
     private String userId;
-    @NonNull
+
+    @NotBlank
     private String password;
 }

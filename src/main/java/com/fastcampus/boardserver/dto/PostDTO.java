@@ -1,24 +1,36 @@
 package com.fastcampus.boardserver.dto;
 
-import lombok.*;
+import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+@Data
 @Builder
-@Getter
-@Setter
-@ToString
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class PostDTO {
+
+    @Positive
     private int id;
     private String name;
-    private int isAdmin;
+
+    @Builder.Default
+    private boolean isAdmin = false;
     private String contents;
-    private Date createTime;
+
+    @Builder.Default
+    private LocalDateTime createdAt = LocalDateTime.now();
+
     private int views;
     private int categoryId;
+
+    @Positive // TODO Ted userId > 0
     private int userId;
     private int fileId;
-    private Date updateTime;
+
+    private LocalDateTime updatedAt;
 }

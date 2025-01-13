@@ -7,11 +7,11 @@ import java.util.List;
 
 @Mapper
 public interface PostMapper {
-    public int register(PostDTO postDTO);
+    int register(PostDTO postDTO);
 
-    public List<PostDTO> selectMyProducts(int accountId);
+    List<PostDTO> selectMyProducts(int accountId);
 
-    public void updateProducts(PostDTO postDTO);
+    void updateProducts(PostDTO postDTO);
 
-    public void deleteProduct(int productId);
+    void deleteProduct(int productId);
 }

@@ -1,6 +1,5 @@
-package com.fastcampus.boardserver.dto.response;
+package com.fastcampus.boardserver.dto.request;
 
-import com.fastcampus.boardserver.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserInfoResponse {
-    private UserDTO userDTO;
+public class CategoryRequest {
+
+    private int id;
+    private String name;
 }

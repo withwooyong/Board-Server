@@ -1,40 +1,41 @@
 package com.fastcampus.boardserver.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fastcampus.boardserver.enums.Status;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@ToString
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserDTO {
-    public enum Status {
-        DEFAULT, ADMIN, DELETED
-    }
+
     private Integer id;
+
+    @NotBlank
     private String userId;
+
+    @NotBlank
     private String password;
+
+    @NotBlank
     private String nickName;
-    private boolean isAdmin;
-    private Date createTime;
-    private boolean isWithDraw;
+
+    @Builder.Default
+    private boolean isAdmin = false;
+
+    @Builder.Default
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Builder.Default
+    private boolean isWithDraw = false; // 탈퇴 여부
     private Status status;
-    private Date updateTime;
-
-    public UserDTO(){
-    }
-
-    public UserDTO(String id, String password, String name, String phone, String address, Status status, Date createTime, Date updateTime, boolean isAdmin) {
-        this.userId = id;
-        this.password = password;
-        this.nickName = name;
-        this.status = status;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.isAdmin = isAdmin;
-    }
+    private LocalDateTime updatedAt;
 
     public static boolean hasNullDataBeforeSignup(UserDTO userDTO) {
         return userDTO.getUserId() == null || userDTO.getPassword() == null

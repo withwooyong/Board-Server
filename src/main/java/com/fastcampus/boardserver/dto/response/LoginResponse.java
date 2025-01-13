@@ -1,27 +1,29 @@
 package com.fastcampus.boardserver.dto.response;
 
-import com.fastcampus.boardserver.controller.UserController;
 import com.fastcampus.boardserver.dto.UserDTO;
+import com.fastcampus.boardserver.enums.LoginStatus;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.Builder;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-@Getter
+@Data
+@Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class LoginResponse {
-    enum LoginStatus {
-        SUCCESS, FAIL, DELETED
-    }
 
-    @NonNull
     private LoginStatus result;
     private UserDTO userDTO;
 
-    private static final LoginResponse FAIL = new LoginResponse(LoginStatus.FAIL);
+//    @Builder.Default
+//    private final LoginResponse FAIL = new LoginResponse(LoginStatus.FAIL, null);
 
     public static LoginResponse success(UserDTO userDTO) {
         return new LoginResponse(LoginStatus.SUCCESS, userDTO);
+    }
+
+    public static LoginResponse fail(UserDTO userDTO) {
+        return new LoginResponse(LoginStatus.FAIL, userDTO);
     }
 }

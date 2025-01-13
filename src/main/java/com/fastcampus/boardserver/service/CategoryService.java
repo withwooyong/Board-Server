@@ -2,12 +2,32 @@ package com.fastcampus.boardserver.service;
 
 
 import com.fastcampus.boardserver.dto.CategoryDTO;
+import com.fastcampus.boardserver.mapper.CategoryMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface CategoryService {
+@Log4j2
+@RequiredArgsConstructor
+@Service
+public class CategoryService {
 
-    void register(String accountId, CategoryDTO categoryDTO);
+    private final CategoryMapper categoryMapper;
 
-    void update(CategoryDTO categoryDTO);
+    @Transactional
+    public void register(CategoryDTO categoryDTO) {
+        categoryMapper.register(categoryDTO);
+    }
 
-    void delete(int categoryId);
+    @Transactional
+    public void update(CategoryDTO categoryDTO) {
+        categoryMapper.updateCategory(categoryDTO);
+    }
+
+    @Transactional
+    public void delete(int categoryId) {
+        categoryMapper.deleteCategory(categoryId);
+
+    }
 }
